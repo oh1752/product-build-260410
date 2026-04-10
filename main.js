@@ -18,55 +18,18 @@ themeToggle.addEventListener('click', () => {
     themeToggle.textContent = '🌙 다크 모드';
     localStorage.setItem('theme', 'light');
   }
+const foods = [
+  '김치찌개', '된장찌개', '치킨', '피자', '삼겹살', 
+  '초밥', '마라탕', '떡볶이', '돈까스', '제육볶음',
+  '햄버거', '파스타', '냉면', '부대찌개', '보쌈',
+  '짜장면', '짬뽕', '탕수육', '곱창', '쌀국수'
+];
+
+document.getElementById('generate').addEventListener('click', () => {
+  const resultDiv = document.getElementById('food-result');
+  const randomIndex = Math.floor(Math.random() * foods.length);
+  const selectedFood = foods[randomIndex];
+
+  resultDiv.innerHTML = `<div class="food-item">${selectedFood} 어때요?</div>`;
 });
 
-const URL = "./my_model/";
-let model, labelContainer, maxPredictions;
-
-// Load the model initially
-async function loadModel() {
-    const modelURL = URL + "model.json";
-    const metadataURL = URL + "metadata.json";
-    model = await tmImage.load(modelURL, metadataURL);
-    maxPredictions = model.getTotalClasses();
-    
-    labelContainer = document.getElementById("label-container");
-    labelContainer.innerHTML = "";
-    for (let i = 0; i < maxPredictions; i++) {
-        labelContainer.appendChild(document.createElement("div"));
-    }
-}
-
-async function handleImageUpload(event) {
-    if (!model) await loadModel();
-
-    const file = event.target.files[0];
-    if (!file) return;
-
-    const imgElement = document.getElementById("face-image");
-    const reader = new FileReader();
-
-    reader.onload = function(e) {
-        imgElement.src = e.target.result;
-        imgElement.style.display = "block";
-        
-        // Predict once the image is loaded
-        imgElement.onload = async () => {
-            await predict(imgElement);
-        };
-    };
-    reader.readAsDataURL(file);
-}
-
-async function predict(imageElement) {
-    const prediction = await model.predict(imageElement);
-    for (let i = 0; i < maxPredictions; i++) {
-        const classPrediction =
-            prediction[i].className + ": " + (prediction[i].probability * 100).toFixed(0) + "%";
-        labelContainer.childNodes[i].innerHTML = classPrediction;
-    }
-}
-
-// Global scope
-window.handleImageUpload = handleImageUpload;
-loadModel(); // Initialize model loading on page load
