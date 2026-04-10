@@ -18,6 +18,8 @@ themeToggle.addEventListener('click', () => {
     themeToggle.textContent = '🌙 다크 모드';
     localStorage.setItem('theme', 'light');
   }
+});
+
 const foods = [
   '김치찌개', '된장찌개', '치킨', '피자', '삼겹살', 
   '초밥', '마라탕', '떡볶이', '돈까스', '제육볶음',
