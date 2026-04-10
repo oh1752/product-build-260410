@@ -3,76 +3,99 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>오늘 저녁 뭐 먹지?</title>
+  <title>오늘 저녁 뭐 먹지? - 맞춤형 저녁 메뉴 추천 가이드</title>
   <link href='/style.css' rel='stylesheet'>
+  <meta name="description" content="매일 반복되는 저녁 메뉴 고민, 인공지능이 추천하는 맞춤형 식단 가이드로 해결하세요. 영양 정보와 최고의 음식 조합까지 제공합니다.">
   <meta name="google-adsense-account" content="ca-pub-7656741498256515">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7656741498256515"
      crossorigin="anonymous"></script>
 </head>
 <body>
-  <button id="theme-toggle">🌙 다크 모드</button>
-  <h1>오늘 저녁 뭐 먹지?</h1>
-  <button id="generate">메뉴 추천받기</button>
-  <div id="food-result"></div>
+  <header>
+    <nav>
+      <div class="logo">오늘 저녁 뭐 먹지?</div>
+      <ul>
+        <li><a href="/">홈</a></li>
+        <li><a href="#partnership">제휴 문의</a></li>
+        <li><a href="#comments">커뮤니티</a></li>
+      </ul>
+      <button id="theme-toggle">🌙 다크 모드</button>
+    </nav>
+  </header>
 
-  <!-- Google AdSense - Horizontal Ad -->
-  <div style="margin: 30px 0; text-align: center;">
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-7656741498256515"
-         data-ad-slot="auto"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-  </div>
-
-  <hr style="width: 80%; margin: 50px 0; border: 0; border-top: 1px solid #ddd;">
-
-  <section id="partnership">
-    <h2>🤝 제휴 문의</h2>
-    <form action="https://formspree.io/f/xpqogpza" method="POST">
-      <div class="form-group">
-        <label for="name">성함/업체명</label>
-        <input type="text" id="name" name="name" required placeholder="성함 또는 업체명을 입력하세요">
+  <main>
+    <section id="hero">
+      <h1>오늘 저녁 메뉴, 고민되시나요?</h1>
+      <p>수만 가지 조합 중 당신에게 딱 맞는 최적의 한 끼를 제안해 드립니다.</p>
+      <button id="generate">오늘의 추천 메뉴 확인하기</button>
+      <div id="food-result"></div>
+      <div id="food-details" class="hidden">
+        <h3 id="detail-title"></h3>
+        <p id="detail-desc"></p>
+        <ul id="detail-tips"></ul>
       </div>
-      <div class="form-group">
-        <label for="email">이메일 주소</label>
-        <input type="email" id="email" name="email" required placeholder="example@email.com">
-      </div>
-      <div class="form-group">
-        <label for="message">문의 내용</label>
-        <textarea id="message" name="message" required placeholder="제휴 제안 내용을 입력해 주세요"></textarea>
-      </div>
-      <button type="submit" class="submit-btn">문의 보내기</button>
-    </form>
-  </section>
+    </section>
 
-  <hr style="width: 80%; margin: 50px 0; border: 0; border-top: 1px solid #ddd;">
+    <!-- Google AdSense - Horizontal Ad -->
+    <div class="ad-container">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7656741498256515"
+           data-ad-slot="auto"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
 
-  <section id="comments" style="width: 90%; max-width: 800px; margin: 0 auto 100px auto;">
-    <h2>💬 댓글</h2>
-    <div id="disqus_thread"></div>
-    <script>
-        /**
-        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-        /*
-        var disqus_config = function () {
-        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-        };
-        */
-        (function() { // DON'T EDIT BELOW THIS LINE
-        var d = document, s = d.createElement('script');
-        s.src = 'https://product-build-4.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-        })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </section>
+    <section id="partnership">
+      <h2>🤝 비즈니스 및 제휴 문의</h2>
+      <p>식당 홍보나 메뉴 데이터 제휴가 필요하신가요? 아래 양식을 통해 문의해 주세요.</p>
+      <form action="https://formspree.io/f/xpqogpza" method="POST">
+        <div class="form-group">
+          <label for="name">성함/업체명</label>
+          <input type="text" id="name" name="name" required placeholder="성함 또는 업체명을 입력하세요">
+        </div>
+        <div class="form-group">
+          <label for="email">이메일 주소</label>
+          <input type="email" id="email" name="email" required placeholder="example@email.com">
+        </div>
+        <div class="form-group">
+          <label for="message">문의 내용</label>
+          <textarea id="message" name="message" required placeholder="제휴 제안 내용을 상세히 입력해 주세요"></textarea>
+        </div>
+        <button type="submit" class="submit-btn">제휴 문의 보내기</button>
+      </form>
+    </section>
+
+    <hr class="section-divider">
+
+    <section id="comments">
+      <h2>💬 사용자 리뷰 및 추천</h2>
+      <p>오늘 먹은 메뉴가 어땠는지 의견을 남겨주세요!</p>
+      <div id="disqus_thread"></div>
+      <script>
+          (function() {
+          var d = document, s = d.createElement('script');
+          s.src = 'https://product-build-4.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+          })();
+      </script>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2026 오늘 저녁 뭐 먹지? All rights reserved.</p>
+      <ul>
+        <li><a href="/about.html">서비스 소개</a></li>
+        <li><a href="/privacy.html">개인정보처리방침</a></li>
+        <li><a href="mailto:support@example.com">고객지원</a></li>
+      </ul>
+    </div>
+  </footer>
 
   <script defer type="text/javascript" src="/main.js"></script>
 </body>
