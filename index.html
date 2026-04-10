@@ -11,11 +11,13 @@
 <body>
   <button id="theme-toggle">🌙 다크 모드</button>
   <h1>나의 동물상 테스트</h1>
-  <p>카메라를 허용하고 '테스트 시작' 버튼을 눌러보세요!</p>
+  <p>사진을 업로드하여 나의 동물상을 확인해보세요!</p>
   
   <div id="test-container">
-    <button type="button" id="start-btn" onclick="init()">테스트 시작</button>
-    <div id="webcam-container"></div>
+    <input type="file" id="image-input" accept="image/*" onchange="handleImageUpload(event)">
+    <div id="image-preview-container">
+      <img id="face-image" src="" alt="선택된 이미지" style="display: none; max-width: 100%; border-radius: 15px;">
+    </div>
     <div id="label-container"></div>
   </div>
 

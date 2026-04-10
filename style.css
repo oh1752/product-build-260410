@@ -34,18 +34,30 @@ body {
   width: 100%;
 }
 
-#webcam-container {
+#image-preview-container {
+  width: 300px;
+  height: 300px;
+  border: 2px dashed var(--ball-bg);
   border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  background: #000;
+  background-color: var(--bg-color);
+}
+
+#image-input {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: var(--ball-bg);
+  color: var(--text-color);
+  cursor: pointer;
 }
 
 #label-container {
   margin-top: 20px;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
-  text-align: center;
 }
 
 #start-btn {

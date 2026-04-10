@@ -20,42 +20,46 @@ themeToggle.addEventListener('click', () => {
   }
 });
 
-const foods = []; // Previous logic removed
-
 const URL = "./my_model/";
-let model, webcam, labelContainer, maxPredictions;
+let model, labelContainer, maxPredictions;
 
-async function init() {
+// Load the model initially
+async function loadModel() {
     const modelURL = URL + "model.json";
     const metadataURL = URL + "metadata.json";
-
-    const startBtn = document.getElementById("start-btn");
-    startBtn.style.display = "none";
-
     model = await tmImage.load(modelURL, metadataURL);
     maxPredictions = model.getTotalClasses();
-
-    const flip = true; 
-    webcam = new tmImage.Webcam(300, 300, flip); 
-    await webcam.setup(); 
-    await webcam.play();
-    window.requestAnimationFrame(loop);
-
-    document.getElementById("webcam-container").appendChild(webcam.canvas);
+    
     labelContainer = document.getElementById("label-container");
+    labelContainer.innerHTML = "";
     for (let i = 0; i < maxPredictions; i++) {
         labelContainer.appendChild(document.createElement("div"));
     }
 }
 
-async function loop() {
-    webcam.update();
-    await predict();
-    window.requestAnimationFrame(loop);
+async function handleImageUpload(event) {
+    if (!model) await loadModel();
+
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const imgElement = document.getElementById("face-image");
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+        imgElement.src = e.target.result;
+        imgElement.style.display = "block";
+        
+        // Predict once the image is loaded
+        imgElement.onload = async () => {
+            await predict(imgElement);
+        };
+    };
+    reader.readAsDataURL(file);
 }
 
-async function predict() {
-    const prediction = await model.predict(webcam.canvas);
+async function predict(imageElement) {
+    const prediction = await model.predict(imageElement);
     for (let i = 0; i < maxPredictions; i++) {
         const classPrediction =
             prediction[i].className + ": " + (prediction[i].probability * 100).toFixed(0) + "%";
@@ -63,4 +67,6 @@ async function predict() {
     }
 }
 
-window.init = init;
+// Global scope
+window.handleImageUpload = handleImageUpload;
+loadModel(); // Initialize model loading on page load
