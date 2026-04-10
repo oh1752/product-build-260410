@@ -20,17 +20,47 @@ themeToggle.addEventListener('click', () => {
   }
 });
 
-const foods = [
-  '김치찌개', '된장찌개', '치킨', '피자', '삼겹살', 
-  '초밥', '마라탕', '떡볶이', '돈까스', '제육볶음',
-  '햄버거', '파스타', '냉면', '부대찌개', '보쌈',
-  '짜장면', '짬뽕', '탕수육', '곱창', '쌀국수'
-];
+const foods = []; // Previous logic removed
 
-document.getElementById('generate').addEventListener('click', () => {
-  const resultDiv = document.getElementById('food-result');
-  const randomIndex = Math.floor(Math.random() * foods.length);
-  const selectedFood = foods[randomIndex];
-  
-  resultDiv.innerHTML = `<div class="food-item">${selectedFood} 어때요?</div>`;
-});
+const URL = "./my_model/";
+let model, webcam, labelContainer, maxPredictions;
+
+async function init() {
+    const modelURL = URL + "model.json";
+    const metadataURL = URL + "metadata.json";
+
+    const startBtn = document.getElementById("start-btn");
+    startBtn.style.display = "none";
+
+    model = await tmImage.load(modelURL, metadataURL);
+    maxPredictions = model.getTotalClasses();
+
+    const flip = true; 
+    webcam = new tmImage.Webcam(300, 300, flip); 
+    await webcam.setup(); 
+    await webcam.play();
+    window.requestAnimationFrame(loop);
+
+    document.getElementById("webcam-container").appendChild(webcam.canvas);
+    labelContainer = document.getElementById("label-container");
+    for (let i = 0; i < maxPredictions; i++) {
+        labelContainer.appendChild(document.createElement("div"));
+    }
+}
+
+async function loop() {
+    webcam.update();
+    await predict();
+    window.requestAnimationFrame(loop);
+}
+
+async function predict() {
+    const prediction = await model.predict(webcam.canvas);
+    for (let i = 0; i < maxPredictions; i++) {
+        const classPrediction =
+            prediction[i].className + ": " + (prediction[i].probability * 100).toFixed(0) + "%";
+        labelContainer.childNodes[i].innerHTML = classPrediction;
+    }
+}
+
+window.init = init;
