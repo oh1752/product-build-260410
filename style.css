@@ -161,17 +161,48 @@ footer a {
   margin-top: 30px;
 }
 
+.recommendation-single {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.recommendation-single .rec-card {
+  max-width: 400px;
+  width: 100%;
+}
+
 .rec-card {
   background: var(--bg-color);
   padding: 25px;
   border-radius: 20px;
   border: 1px solid rgba(0,0,0,0.05);
   transition: transform 0.2s;
+  cursor: pointer; /* 클릭 가능하도록 변경 */
 }
 
 .rec-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  border-color: var(--primary-color); /* 호버 시 색상 강조 */
+}
+
+#tip-area {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: rgba(255, 107, 107, 0.05);
+  border-radius: 15px;
+  animation: fadeIn 0.5s;
+}
+
+#tip-list li {
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .rec-card .tag {

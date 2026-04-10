@@ -27,32 +27,29 @@
     <section id="hero">
       <h1>오늘 저녁 메뉴, 고민되시나요?</h1>
       <p>수만 가지 조합 중 당신에게 딱 맞는 최적의 한 끼를 제안해 드립니다.</p>
-      <button id="generate">오늘의 추천 메뉴 3가지 확인하기</button>
+      <button id="generate">오늘의 추천 메뉴 확인하기</button>
     </section>
 
     <!-- 추천 결과 팝업 모달 -->
     <div id="result-modal" class="modal hidden">
       <div class="modal-content">
         <span class="close-btn">&times;</span>
-        <h2>오늘의 추천 메뉴 TOP 3</h2>
-        <div class="recommendation-grid">
-          <div class="rec-card" id="rec-korean">
-            <div class="tag">🍱 든든한 한식</div>
-            <h3 class="name"></h3>
-            <p class="desc"></p>
-          </div>
-          <div class="rec-card" id="rec-global">
-            <div class="tag">🍝 이국적인 별미</div>
-            <h3 class="name"></h3>
-            <p class="desc"></p>
-          </div>
-          <div class="rec-card" id="rec-light">
-            <div class="tag">🥗 가벼운 한 끼</div>
-            <h3 class="name"></h3>
-            <p class="desc"></p>
+        <h2>오늘의 추천 메뉴</h2>
+        <div class="recommendation-single">
+          <div class="rec-card" id="rec-main">
+            <div class="tag" id="rec-tag"></div>
+            <h3 class="name" id="rec-name"></h3>
+            <p class="desc" id="rec-desc"></p>
           </div>
         </div>
-        <p class="modal-footer-text">원하시는 메뉴를 클릭하여 상세 팁을 확인하세요!</p>
+        <p class="modal-footer-text">추천 메뉴의 상세 팁을 확인해 보세요!</p>
+        
+        <!-- 상세 팁 영역 -->
+        <div id="tip-area" class="hidden">
+          <hr style="margin: 30px 0; border-top: 1px dashed #ddd;">
+          <h3 id="tip-title"></h3>
+          <ul id="tip-list" style="text-align: left; display: inline-block;"></ul>
+        </div>
       </div>
     </div>
 
