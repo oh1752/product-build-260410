@@ -27,14 +27,34 @@
     <section id="hero">
       <h1>오늘 저녁 메뉴, 고민되시나요?</h1>
       <p>수만 가지 조합 중 당신에게 딱 맞는 최적의 한 끼를 제안해 드립니다.</p>
-      <button id="generate">오늘의 추천 메뉴 확인하기</button>
-      <div id="food-result"></div>
-      <div id="food-details" class="hidden">
-        <h3 id="detail-title"></h3>
-        <p id="detail-desc"></p>
-        <ul id="detail-tips"></ul>
-      </div>
+      <button id="generate">오늘의 추천 메뉴 3가지 확인하기</button>
     </section>
+
+    <!-- 추천 결과 팝업 모달 -->
+    <div id="result-modal" class="modal hidden">
+      <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>오늘의 추천 메뉴 TOP 3</h2>
+        <div class="recommendation-grid">
+          <div class="rec-card" id="rec-korean">
+            <div class="tag">🍱 든든한 한식</div>
+            <h3 class="name"></h3>
+            <p class="desc"></p>
+          </div>
+          <div class="rec-card" id="rec-global">
+            <div class="tag">🍝 이국적인 별미</div>
+            <h3 class="name"></h3>
+            <p class="desc"></p>
+          </div>
+          <div class="rec-card" id="rec-light">
+            <div class="tag">🥗 가벼운 한 끼</div>
+            <h3 class="name"></h3>
+            <p class="desc"></p>
+          </div>
+        </div>
+        <p class="modal-footer-text">원하시는 메뉴를 클릭하여 상세 팁을 확인하세요!</p>
+      </div>
+    </div>
 
     <!-- Google AdSense - Horizontal Ad -->
     <div class="ad-container">
