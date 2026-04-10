@@ -1,3 +1,17 @@
+:root {
+  --bg-color: #ffffff;
+  --text-color: #333333;
+  --ball-bg: #eeeeee;
+  --ball-text: #333333;
+}
+
+body.dark-mode {
+  --bg-color: #1a1a1a;
+  --text-color: #f0f0f0;
+  --ball-bg: #444444;
+  --ball-text: #ffffff;
+}
+
 body {
   font-family: sans-serif;
   display: flex;
@@ -6,6 +20,9 @@ body {
   justify-content: center;
   height: 100vh;
   margin: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
 }
 
 #numbers {
@@ -19,8 +36,18 @@ body {
   height: 50px;
   margin: 0 10px;
   border-radius: 50%;
-  background-color: #eee;
+  background-color: var(--ball-bg);
+  color: var(--ball-text);
   text-align: center;
   line-height: 50px;
   font-size: 24px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+#theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 10px 15px;
+  cursor: pointer;
 }
