@@ -25,23 +25,91 @@ body {
   transition: background-color 0.3s, color 0.3s;
 }
 
-#numbers {
-  display: flex;
-  margin-top: 20px;
+#food-result {
+  margin-top: 30px;
+  font-size: 32px;
+  font-weight: bold;
 }
 
-#numbers span {
-  display: inline-block;
-  width: 50px;
-  height: 50px;
-  margin: 0 10px;
-  border-radius: 50%;
+.food-item {
+  padding: 20px;
+  border-radius: 10px;
   background-color: var(--ball-bg);
   color: var(--ball-text);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+button#generate {
+  padding: 15px 30px;
+  font-size: 18px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #ff6b6b;
+  color: white;
+  transition: background-color 0.2s;
+}
+
+button#generate:hover {
+  background-color: #ee5253;
+}
+
+#partnership {
+  width: 90%;
+  max-width: 500px;
+  margin: 0 auto 50px auto;
+  padding: 20px;
+  background-color: var(--ball-bg);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+#partnership h2 {
   text-align: center;
-  line-height: 50px;
-  font-size: 24px;
-  transition: background-color 0.3s, color 0.3s;
+  margin-top: 0;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.form-group input, 
+.form-group textarea {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: inherit;
+}
+
+.form-group textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: #4834d4;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submit-btn:hover {
+  background-color: #686de0;
 }
 
 #theme-toggle {
